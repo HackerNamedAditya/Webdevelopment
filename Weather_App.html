@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+           background-image: url('https://static.vecteezy.com/system/resources/thumbnails/006/429/746/small/abstract-background-gradient-abstract-modern-background-for-mobile-apps-free-vector.jpg');
+            width: 100vw;
+            height:100vh;
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+            background-size: cover;
+        }
+        h1{
+            color:aquamarine;
+        }
+        .card{
+            text-align: center;
+            border-radius: 10px;
+            height:50vh;
+            opacity: 1;
+        }
+        #seven{
+            
+            justify-content:space-evenly;
+            margin-top: 10px;
+            width: 100%;
+            
+            flex-wrap: wrap;
+        }
+        .searchbar{
+            display: flex;
+            justify-content: center;
+            margin: 5%;
+            width: 90%;
+            height: 40px;
+            transition: all ease 1s;
+        }
+        .searchbar:hover{
+            transform: scale(1.3);
+        }
+        .searchbar i{
+            background-color:white;
+            border: none;
+            
+        }
+        .searchbar button{
+            width: 15%;
+            border: none;
+           border-top-right-radius: 3px;
+           border-bottom-right-radius: 3px;
+           box-shadow: 3px 3px 3px;
+           background-color: white;
+           padding:20px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+        }
+        .searchbar input{
+            border: none;
+            font-size: 1rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+           box-shadow: 3px 3px 3px;
+        }
+        
+        .tempe{
+            font-size: 200%;
+            
+        }
+        .extra{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .humid{
+            display: flex;
+            flex-wrap: wrap;
+            
+            margin-top: 0%;
+        }
+        .wind{
+            display: flex;
+            flex-wrap: wrap;
+            
+            margin-top: 0%;
+        }
+        #i{
+            padding-left: 10px;
+        }
+        .city{
+            font-size: 30px;
+            
+        }
+        .weathercondition{
+            font-size: 30px;
+        }
+        .fa-droplet{
+            color: skyblue;
+        }
+        .fa-wind{
+            color: azure;
+        }
+        .hero{
+            color: blue;
+        }
+        .pop{
+            display: none;
+        }
+        .pop1{
+            display: flex;
+        }
+        #MyClockDisplay{
+            padding: 1rem;
+            color:chocolate;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="watch1">
+            <div id="date"></div>
+            <div id="month"></div>
+            <div id="year"></div>
+        </div>
+        <div id="MyClockDisplay" class="clock"></div>
+    </div>
+    <div class="main">
+    <div class="card">
+    <h1>Weather App</h1>
+        <div class="searchbar">
+                <input type="text" placeholder="Search the City" id="i" spellcheck="false">
+            <button onclick="findtemp()"><i class="fa-solid fa-magnifying-glass" onclick="findtemp()"></i></button>
+        </div>
+        <div class="extra">
+            <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+            <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="weatherimg">
+            <img src="" alt="" class="weatherimg1">
+        </div>
+        <div class="weathercondition"></div>
+        <div class="date"></div>
+        <div class="city"></div>
+        <div class="tempe"></div>
+        <div id="seven" class="pop">
+        <div class="firstdes">
+        <img src="" alt="" class="weatherimg1">
+        <div class="first"></div>
+        <div class="firstweathercondition weathercondition"></div>
+        <div class="day1"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="seconddes"><img src="" alt="" class="weatherimg1">
+        <div class="second"></div>
+        <div class="secondweathercondition weathercondition"></div>
+        <div class="day2"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="thirddes"><img src="" alt="" class="weatherimg1">
+        <div class="third"></div>
+        <div class="thirdweathercondition weathercondition"></div>
+        <div class="day3"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="fourthdes">
+        <img src="" alt="" class="weatherimg1">
+        <div class="fourth"></div>
+        <div class="fourthweathercondition weathercondition"></div>
+        <div class="day4"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="fifthdes">
+        <img src="" alt="" class="weatherimg1">
+        <div class="fifth"></div>
+        <div class="fifthweathercondition weathercondition"></div>
+        <div class="day5"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        <div class="sixthdes"><img src="" alt="" class="weatherimg1">
+        <div class="sixth"></div>
+        <div class="sixthweathercondition weathercondition"></div>
+        <div class="day6"></div>
+        <div class="humid">Humidity <i class="fa-solid fa-droplet"></i> : <div class="humidity">-</div></div>
+        <div class="wind">Windspeed <i class="fa-solid fa-wind"></i> : <div class="windspeed">-</div></div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const api="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
+        const apikey="?unitGroup=us&key=CBEL55F3TK7CBV6C2Y6TJGW6H&contentType=json";
+        async function findtemp(){
+            
+            const t=document.getElementById("i");
+            const response=await fetch(api+i.value+apikey);
+            var data=await response.json();
+            document.getElementsByClassName("tempe")[0].innerHTML=Math.round((data.days[0].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("first")[0].innerHTML=Math.round((data.days[1].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("second")[0].innerHTML=Math.round((data.days[2].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("third")[0].innerHTML=Math.round((data.days[3].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("fourth")[0].innerHTML=Math.round((data.days[4].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("fifth")[0].innerHTML=Math.round((data.days[5].temp-32)*5/9)+"°C";
+            document.getElementsByClassName("sixth")[0].innerHTML=Math.round((data.days[6].temp-32)*5/9)+"°C";
+
+            document.getElementsByClassName("city")[0].innerHTML=data.address;
+            document.getElementsByClassName("humidity")[6].innerHTML=(data.days[0].humidity)+"%";
+            document.getElementsByClassName("humidity")[0].innerHTML=(data.days[1].humidity)+"%";
+            document.getElementsByClassName("humidity")[1].innerHTML=(data.days[2].humidity)+"%";
+            document.getElementsByClassName("humidity")[2].innerHTML=(data.days[3].humidity)+"%";
+            document.getElementsByClassName("humidity")[3].innerHTML=(data.days[4].humidity)+"%";
+            document.getElementsByClassName("humidity")[4].innerHTML=(data.days[5].humidity)+"%";
+            document.getElementsByClassName("humidity")[5].innerHTML=(data.days[6].humidity)+"%";
+            document.getElementsByClassName("windspeed")[6].innerHTML=(data.days[0].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[0].innerHTML=(data.days[1].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[1].innerHTML=(data.days[2].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[2].innerHTML=(data.days[3].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[3].innerHTML=(data.days[4].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[4].innerHTML=(data.days[5].windspeed)+"Km/h";
+            document.getElementsByClassName("windspeed")[5].innerHTML=(data.days[6].windspeed)+"Km/h";
+            const d=new Date();
+            document.getElementsByClassName("date")[0].innerHTML=curr(d.getDay())+","+d.toUTCString().slice(5,16);
+            document.getElementsByClassName("day1")[0].innerHTML=curr(d.getDay()+1);
+            document.getElementsByClassName("day2")[0].innerHTML=curr(d.getDay()+2);
+            document.getElementsByClassName("day3")[0].innerHTML=curr(d.getDay()+3);
+            document.getElementsByClassName("day4")[0].innerHTML=curr(d.getDay()+4);
+            document.getElementsByClassName("day5")[0].innerHTML=curr(d.getDay()+5);
+            document.getElementsByClassName("day6")[0].innerHTML=curr(d.getDay()+6);
+            for(j=0;j<7;j++){
+                if(data.days[j].conditions[0]==="C"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/01d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Clear";
+            }
+            else if(data.days[j].conditions[0]==="P" || data.days[j].conditions[0]==="O"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/02d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Clouds";
+            }
+            else if(data.days[j].conditions[0]==="R"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/10d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Rain";
+            }
+            else if(data.days[j].conditions[0]==="T"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/11d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Thunderstrom";
+            }
+            else if(data.days[j].conditions[0]==="S"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/13d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Snow";
+            }
+            else if(data.days[j].conditions[0]==="H"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/50d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Haze";
+            }
+            else if(data.days[j].conditions[0]==="F"){
+                document.getElementsByClassName("weatherimg1")[j].src="http://openweathermap.org/img/wn/50d@2x.png";
+                document.getElementsByClassName("weathercondition")[j].innerHTML="Fog";
+            }
+            }
+           document.getElementById("seven").classList.remove('pop');
+           document.getElementById("seven").classList.add('pop1');
+        }
+        let ino=document.getElementById("i");
+        ino.addEventListener('keyup',(e)=>{
+            if(e.keyCode=='13'){
+                findtemp();
+            }
+        })
+        function curr(d){
+            if(d>6){
+                d=d-7;
+            }
+            if(d=='0'){
+                return 'Sunday'
+            }
+            else if(d=='1'){
+                return 'Monday'
+            }
+            else if(d=='2'){
+                return 'Tuesday'
+            }
+            else if(d=='3'){
+                return 'Wednesday'
+            }
+            else if(d=='4'){
+                return 'Thursday'
+            }
+            else if(d=='5'){
+                return 'Friday'
+            }
+            else if(d=='6'){
+                return 'Saturday'
+            }
+        }
+        function showTime(){
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes(); 
+            var s = date.getSeconds(); 
+            var session = "AM";
+    
+            if(h == 0){
+                h = 12;
+            }
+    
+            if(h > 12){
+                h = h - 12;
+                session = "PM";
+            }
+    
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+    
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+    
+            setTimeout(showTime,1000)
+    
+        }
+showTime()
+        </script>
+</body>
+</html>
