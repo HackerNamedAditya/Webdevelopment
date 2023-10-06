@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .hero{
+        height: 100vh;
+        width: 100%;
+        background-image: url("https://images.unsplash.com/photo-1695642579093-2a646b3e89e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .watch1{
+        position: absolute;
+        top: 30%;
+        width: 100%;
+        height: fit-content;
+        color:rgb(54, 175, 175);
+        font-size: 50px;
+        
+        display: flex;
+        justify-content: center;
+    }
+    #MyClockDisplay{
+        font-size: 100px;
+        position: absolute;
+        top: 50%;
+        left: 30%;
+        color: rgb(46, 46, 148);
+        text-decoration:solid;
+        
+    }
+</style>
+<body>
+    <div class="hero">
+        <div class="watch1">
+            <div id="date"></div>
+            <div id="month"></div>
+            <div id="year"></div>
+        </div>
+        <div id="MyClockDisplay" class="clock"></div>
+    </div>
+</body>
+<script>
+    function showTime(){
+    var date = new Date();
+    var h = date.getHours();
+    var m = date.getMinutes(); 
+    var s = date.getSeconds(); 
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " " + session;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+    
+    setTimeout(showTime,1000)
+    
+}
+showTime()
+var d=new Date();
+document.getElementById('date').innerText=d.getDate()+'/';
+document.getElementById('month').innerText=d.getMonth()+'/';
+document.getElementById('year').innerText=d.getFullYear();
+</script>
+</html>
