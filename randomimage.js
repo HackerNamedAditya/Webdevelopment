@@ -1,4 +1,4 @@
-
+//use npm run dev in terminal to see the code in localhost
 "use client"
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
