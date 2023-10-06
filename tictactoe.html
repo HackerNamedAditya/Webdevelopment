@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<style>
+    body{
+        background-image: url("https://cdn3.vectorstock.com/i/1000x1000/70/07/tic-tac-toe-background-eps10-vector-1447007.jpg");
+        background-size: cover;
+        background-repeat: none;
+        background-attachment: fixed;
+    }
+    .gamearea{
+       display: grid;
+       grid-template-rows: 80px 80px 80px;
+       grid-template-columns: 80px 80px 80px;
+       
+    }
+    @media (max-width:260px) {
+        .gamearea{
+            display: grid;
+            grid-template-columns: 50px 50px 50px;
+            grid-template-rows: 50px 50px 50px;
+        }
+    }
+    @media (max-width:170px) {
+        .gamearea{
+            display: grid;
+            grid-template-columns: 30px 30px 30px;
+            grid-template-rows: 30px 30px 30px;
+        }
+    }
+    @media (max-width:100px) {
+        .gamearea{
+            display: grid;
+            grid-template-columns: 25px 25px 25px;
+            grid-template-rows: 25px 25px 25px;
+        }
+    }
+    .box{
+        border: 2px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 3px 3px 2px ;
+    }
+    .tic{
+        display: flex;
+        justify-content: center;
+    }
+    .box:hover{
+        background-color: aqua;
+        transform: scale(1.04);
+    }
+    .jio{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .result{
+        display: flex;
+        justify-content: center;
+    }
+    .heading{
+        display: flex;
+        justify-content: center;
+        font-family: fantasy;
+        color:brown;
+        margin-bottom: 7vh;
+        font-size: 30px;
+        text-shadow: 1px 1px 1px salmon;
+    }
+    .resetbtn{
+        margin-top: 10vh;
+        color:blueviolet;
+    }
+    .resetbtn:hover{
+        transform: scale(1.1);
+    }
+    .result{
+        margin: 3vh;
+    }
+    button{
+        font-size: 20px;
+        background-color:azure;
+        border-radius:50px;
+        box-shadow: 2px 3px 3px gray ;
+    }
+    .info{
+        color:blue;
+        font-size: x-large;
+    }
+    .boxin{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 30px;
+        color:blueviolet;
+    }
+    .newclass{
+        animation: adi;
+        animation-duration:1s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+    @keyframes adi {
+        from{
+            background-color:none;
+        }
+        to{
+            background-color: aqua;
+         }
+    }
+</style>
+<body>
+    <div class="heading">Tic Tac Toe</div>
+    <div class="result">
+        <span class="info">X turn</span>
+    </div>
+    <div class="tic">
+    <div class="gamearea" id="gamepad">
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+        <div class="box"><span class="boxin"></span></div>
+    </div>
+    </div>
+    <div class="jio">
+    <button onclick="resetbtn()" class="resetbtn">Reset Now</button>
+    </div>
+    
+    <!--JavaScript Part-->
+    <script>
+        let gameover=false;
+        let turn ="X";
+        const changeturn=()=>{
+            return turn==="X"?"O":"X"
+        }
+        const checkWin=()=>{
+            let boxtext=document.getElementsByClassName("boxin");
+            
+            let wins=[
+                [0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,4,8],
+                [2,4,6],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8]
+            ]
+            wins.forEach(e=>{
+            if((boxtext[e[0]].innerHTML===boxtext[e[1]].innerHTML)&&(boxtext[e[2]].innerHTML===boxtext[e[1]].innerHTML)&&(boxtext[e[0]].innerHTML!=="")){
+                boxtext[e[0]].parentElement.classList.add("newclass");
+                boxtext[e[1]].parentElement.classList.add("newclass");
+                boxtext[e[2]].parentElement.classList.add("newclass");
+                document.querySelector('.info').innerHTML="Result : "+boxtext[e[0]].innerHTML +" Won"+"<br>"+"Click on Reset";
+                gameover=true;
+            }
+            })
+        }
+        let boxes=document.getElementsByClassName("box");
+        Array.from(boxes).forEach(element=>{
+            let boxtext=element.querySelector('.boxin');
+            element.addEventListener('click',()=>{
+                if(boxtext.innerHTML===''){
+                    boxtext.innerHTML=turn;
+                    turn=changeturn();
+                    checkWin();
+                    if(gameover===false){
+                        document.querySelector('.info').innerHTML=turn+" Turn"
+                    }
+                }
+            })
+        })
+        function resetbtn(){
+            Array.from(boxes).forEach(element=>{
+                let boxtext=element.querySelector('.boxin');
+                boxtext.innerHTML='';
+            })
+            turn='X';
+            document.querySelector('.info').innerHTML="X Turn"
+            Array.from(boxes).forEach(element=>{
+                if(element.classList.contains("newclass")){
+                    element.classList.remove("newclass");
+                }
+            })
+        }
+    </script>
+</body>
+</html>
